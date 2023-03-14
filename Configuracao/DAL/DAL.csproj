@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GrupoUsuarioDALL.cs" />
+    <Compile Include="PermissaoDALcs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsuarioDAL.cs" />
   </ItemGroup>

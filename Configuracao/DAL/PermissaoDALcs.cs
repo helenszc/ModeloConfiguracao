@@ -7,29 +7,29 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class UsuarioDAL
+    public class PermissaoDALcs
     {
-        public void Inserir(Usuario _usuario)
+        public void Inserir(Permissao _permissao)
         {
 
         }
 
-        public List<Usuario> BuscarTodos()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Usuario> BuscarPorNomeUsuario(string _nomeUsuario)
+        public List<Permissao> BuscarTodos()
         {
             throw new NotImplementedException();
         }
 
-        public List<Usuario> BuscarPorId(int _id)
+        public List<Permissao> BuscarPorDescricao(string _descricao)
         {
             throw new NotImplementedException();
         }
 
-        public void Alterar(UsuarioDAL _usuario)
+        public List<Permissao> BuscarPorId(int _id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Alterar(Permissao _permissao)
         {
 
         }

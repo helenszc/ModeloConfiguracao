@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class GrupoUsuarioDALL
+    public class GrupoUsuarioDAL
     {
             public void Inserir(GrupoUsuario _grupoUsuario)
             {
-
+                
             }
 
             public List<GrupoUsuario> BuscarTodos()

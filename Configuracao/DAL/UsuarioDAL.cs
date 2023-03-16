@@ -206,6 +206,7 @@ namespace DAL
 
                     }
                 }
+                return usuarios;
             }
             catch (Exception ex)
             {
@@ -248,7 +249,7 @@ namespace DAL
                     cn.Close();
                 }
             }
-            public void Excluir(int _id)
+        public void Excluir(int _id)
             {
                 SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
                 try

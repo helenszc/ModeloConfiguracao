@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class PermissaoDALcs
+    public class PermissaoDAL
     {
         public void Inserir(Permissao _permissao)
         {

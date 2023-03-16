@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DAL;
+using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,46 @@ namespace BLL
 {
     public class GrupoUsuarioBLL
     {
+        public void Inserir(GrupoUsuario _grupoUsuario)
+        {
+            GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
+            grupoUsuarioDAL.Inserir(_grupoUsuario);
+
+            if(_grupoUsuario.NomeGrupo.Length < 5)
+            {
+                throw new Exception("O nome do grupo deve conter pelo menos 5 caracteres");
+            }
+            if(_grupoUsuario.NomeGrupo.Length > 20)
+            {
+                throw new Exception("O nome do grupo não deve ser tão grande(no maximo 20 caracteres)");
+            }
+
+        }
+
+        public void Alterar(GrupoUsuario _grupoUsuario)
+        {
+            GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
+            grupoUsuarioDAL.Alterar(_grupoUsuario);
+        }
+
+        public void Excluir(int _id)
+        {
+            new GrupoUsuarioDAL().Excluir(_id);
+        }
+
+        public List<GrupoUsuario> BuscarTodos()
+        {
+            return new GrupoUsuarioDAL().BuscarTodos();
+        }
+
+        public GrupoUsuario BuscarPorId(int _id)
+        {
+            return new GrupoUsuarioDAL().BuscarPorId(_id);
+        }
+
+        public GrupoUsuario BuscarPorNomeGrupo(string _nomeGrupo)
+        {
+            return new GrupoUsuarioDAL().BuscarPorNomeGrupo(_nomeGrupo);
+        }
     }
 }

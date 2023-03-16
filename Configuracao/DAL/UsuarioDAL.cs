@@ -80,7 +80,7 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                throw new Exception("Ocorreu um erro ao tentar buscar todos od usuários do banco de dados", ex);
+                throw new Exception("Ocorreu um erro ao tentar buscar todos os usuários do banco de dados", ex);
             }
             finally
             {

@@ -58,7 +58,7 @@ namespace DAL
                         {
                             grupoUsuario = new GrupoUsuario();
                             grupoUsuario.Id = Convert.ToInt32(rd["Id"]);
-                            grupoUsuario.NomeGrupo = rd["Nome"].ToString();
+                            grupoUsuario.NomeGrupo = rd["NomeGrupo"].ToString();
 
                             grupoUsuarios.Add(grupoUsuario);
 
@@ -98,7 +98,7 @@ namespace DAL
                     if (rd.Read())
                     {
                         grupoUsuario.Id = Convert.ToInt32(rd["Id"]);
-                        grupoUsuario.NomeGrupo = rd["Nome"].ToString();
+                        grupoUsuario.NomeGrupo = rd["NomeGrupo"].ToString();
 
                     }
                 }
@@ -106,7 +106,7 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                throw new Exception("Ocorreu um erro ao tentar buscar o usuario por nome do usuario do banco de dados", ex);
+                throw new Exception("Ocorreu um erro ao tentar buscar o usuario por nome do grupo do banco de dados", ex);
             }
             finally
             {
@@ -136,7 +136,7 @@ namespace DAL
                     if (rd.Read())
                     {
                         grupoUsuario.Id = Convert.ToInt32(rd["Id"]);
-                        grupoUsuario.NomeGrupo = rd["Nome"].ToString();
+                        grupoUsuario.NomeGrupo = rd["NomeGrupo"].ToString();
                     }
                 }
                 return grupoUsuario;

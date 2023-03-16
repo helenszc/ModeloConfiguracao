@@ -218,6 +218,51 @@ namespace DAL
             }
         }
 
+        public Usuario BuscarPorCPF(string _cpf)
+        {
+            Usuario usuario = new Usuario();
+
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = cn;
+                cmd.CommandText = "SELECT Id,Nome, NomeUsuario, Email, CPF, Ativo, Senha FROM Usuario WHERE CPF = @CPF";
+                cmd.CommandType = System.Data.CommandType.Text;
+
+                cmd.Parameters.AddWithValue("@CPF", _cpf);
+
+                cn.Open();
+
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    if (rd.Read())
+                    {
+                        usuario.Id = Convert.ToInt32(rd["Id"]);
+                        usuario.Nome = rd["Nome"].ToString();
+                        usuario.NomeUsuario = rd["NomeUsuario"].ToString();
+                        usuario.Email = rd["Email"].ToString();
+                        usuario.CPF = rd["CPF"].ToString();
+                        usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
+                        usuario.Senha = rd["Senha"].ToString();
+
+
+
+                    }
+                }
+                return usuario;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu um erro ao tentar buscar o usuario pelo seu CPF no banco de dados", ex);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
         public void Alterar(Usuario _usuario)
             {
                 SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);

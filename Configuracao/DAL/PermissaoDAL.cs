@@ -25,6 +25,7 @@ namespace DAL
 
                 cmd.Connection = cn;
                 cn.Open();
+                cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {

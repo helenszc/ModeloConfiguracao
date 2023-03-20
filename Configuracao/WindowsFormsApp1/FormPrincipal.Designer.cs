@@ -69,6 +69,7 @@
             this.gruposDeUsuárioToolStripMenuItem.Name = "gruposDeUsuárioToolStripMenuItem";
             this.gruposDeUsuárioToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.gruposDeUsuárioToolStripMenuItem.Text = "Grupos de usuário";
+            this.gruposDeUsuárioToolStripMenuItem.Click += new System.EventHandler(this.gruposDeUsuárioToolStripMenuItem_Click);
             // 
             // permissõesToolStripMenuItem
             // 

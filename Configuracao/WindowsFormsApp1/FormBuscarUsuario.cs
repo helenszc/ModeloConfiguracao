@@ -62,5 +62,12 @@ namespace WindowsFormsApp1
             }
             buttonBuscar_Click(null, null);
         }
+
+
+        //não inserido
+        private void buttonExcluirGrupoUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

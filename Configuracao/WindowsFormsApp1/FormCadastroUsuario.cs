@@ -15,7 +15,7 @@ namespace WindowsFormsApp1
     public partial class FormCadastroUsuario : Form
     {
         public int Id;
-        public FormCadastroUsuario(int _id)
+        public FormCadastroUsuario(int _id = 0)
         {
             InitializeComponent();
             Id = _id;
@@ -26,14 +26,22 @@ namespace WindowsFormsApp1
         {
             UsuarioBLL usuarioBLL = new UsuarioBLL();
             usuarioBindingSource.EndEdit();
-            usuarioBLL.Inserir((Usuario)usuarioBindingSource.Current);
+
+            if (Id == 0)          
+                usuarioBLL.Inserir((Usuario)usuarioBindingSource.Current);
+            else
+                usuarioBLL.Alterar((Usuario)usuarioBindingSource.Current);
+
             MessageBox.Show("Registro salvo com sucesso!");
             Close();
         }
 
         private void FormCadastroUsuario_Load(object sender, EventArgs e)
         {
-            usuarioBindingSource.AddNew();
+            if (Id == 0)
+                usuarioBindingSource.AddNew();
+            else
+                usuarioBindingSource.DataSource = new UsuarioBLL().BuscarPorId(Id);
         }
 
         private void buttonCancelar_Click(object sender, EventArgs e)

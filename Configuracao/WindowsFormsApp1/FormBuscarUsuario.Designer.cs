@@ -184,6 +184,7 @@
             this.buttonAlterar.TabIndex = 3;
             this.buttonAlterar.Text = "Alterar";
             this.buttonAlterar.UseVisualStyleBackColor = true;
+            this.buttonAlterar.Click += new System.EventHandler(this.buttonAlterar_Click);
             // 
             // buttonAdicionarUsuario
             // 

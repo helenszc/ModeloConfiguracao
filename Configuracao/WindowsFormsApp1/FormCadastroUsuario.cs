@@ -14,9 +14,11 @@ namespace WindowsFormsApp1
 {
     public partial class FormCadastroUsuario : Form
     {
-        public FormCadastroUsuario()
+        public int Id;
+        public FormCadastroUsuario(int _id)
         {
             InitializeComponent();
+            Id = _id;
         }
 
 

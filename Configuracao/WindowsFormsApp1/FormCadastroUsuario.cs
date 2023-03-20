@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLL;
+using Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,26 @@ namespace WindowsFormsApp1
         public FormCadastroUsuario()
         {
             InitializeComponent();
+        }
+
+
+        private void buttonSalvar_Click(object sender, EventArgs e)
+        {
+            UsuarioBLL usuarioBLL = new UsuarioBLL();
+            usuarioBindingSource.EndEdit();
+            usuarioBLL.Inserir((Usuario)usuarioBindingSource.Current);
+            MessageBox.Show("Registro salvo com sucesso!");
+            Close();
+        }
+
+        private void FormCadastroUsuario_Load(object sender, EventArgs e)
+        {
+            usuarioBindingSource.AddNew();
+        }
+
+        private void buttonCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

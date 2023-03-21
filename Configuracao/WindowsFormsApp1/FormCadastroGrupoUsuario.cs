@@ -15,24 +15,36 @@ namespace WindowsFormsApp1
 {
     public partial class FormCadastroGrupoUsuario : Form
     {
-        public FormCadastroGrupoUsuario()
+        public int Id;
+        public FormCadastroGrupoUsuario(int id = 0)
         {
             InitializeComponent();
+            Id = id;
         }
 
-        private void buttonSalvar_Click(object sender, EventArgs e)
-        {
-        }
         private void buttonCancelar_Click(object sender, EventArgs e)
         {
             Close();
         }
+        private void buttonSalvar_Click(object sender, EventArgs e)
+        {
+            GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
+            grupoUsuarioBindingSource.EndEdit();
 
+            if (Id == 0)
+                grupoUsuarioBLL.Inserir((GrupoUsuario)grupoUsuarioBindingSource.Current);
+            else
+                grupoUsuarioBLL.Alterar((GrupoUsuario)grupoUsuarioBindingSource.Current);
 
-        // nada inserido
+            MessageBox.Show("Registro salvo com sucesso!");
+            Close();
+        }
         private void FormCadastroGrupoUsuario_Load(object sender, EventArgs e)
         {
-
+            if (Id == 0)
+                grupoUsuarioBindingSource.AddNew();
+            else
+                grupoUsuarioBindingSource.DataSource = new GrupoUsuarioBLL().BuscarPorId(Id);
         }
 
     }

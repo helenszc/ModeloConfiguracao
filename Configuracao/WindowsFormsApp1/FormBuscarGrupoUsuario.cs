@@ -44,22 +44,13 @@ namespace WindowsFormsApp1
 
             MessageBox.Show("Registro excluído com sucesso");
         }
-        private void buttonAlterar_Click(object sender, EventArgs e)
-        {
-            int id = ((GrupoUsuario)grupoUsuarioBindingSource.Current).Id;
-            using (FormCadastroGrupoUsuario frm = new FormCadastroGrupoUsuario(id))
-            {
-                frm.ShowDialog();
-            }
-            buttonBuscar_Click(null, null);
-        }
         private void buttonAdicionarGrupoUsuario_Click(object sender, EventArgs e)
         {
-            using (FormCadastroGrupoUsuario frm = new FormCadastroGrupoUsuario())
-            {
-                frm.ShowDialog();
-            }
-            buttonBuscar_Click(null, null);
+                using (FormCadastroGrupoUsuario frm = new FormCadastroGrupoUsuario())
+                {
+                    frm.ShowDialog();
+                }
+                buttonBuscar_Click(null, null);
         }
 
 
@@ -69,5 +60,10 @@ namespace WindowsFormsApp1
         {
 
         }
+        private void buttonAlterar_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

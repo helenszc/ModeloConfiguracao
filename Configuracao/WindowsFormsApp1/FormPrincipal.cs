@@ -35,5 +35,10 @@ namespace WindowsFormsApp1
             }
 
         }
+
+        private void FormPrincipal_Load(object sender, EventArgs e)
+        {
+            Constantes.IdUsuarioLogado = 1;
+        }
     }
 }

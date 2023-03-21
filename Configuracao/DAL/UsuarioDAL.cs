@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,7 +44,6 @@ namespace DAL
             }
 
         }
-
         public List<Usuario> BuscarTodos()
         {
             List<Usuario> usuarios = new List<Usuario>();
@@ -88,7 +88,6 @@ namespace DAL
                 cn.Close();
             }
         }
-
         public Usuario BuscarPorNomeUsuario(string _nomeUsuario)
         {
             Usuario usuario = new Usuario();
@@ -133,7 +132,6 @@ namespace DAL
                 cn.Close();
             }
         }
-
         public Usuario BuscarPorId(int _id)
         {
 
@@ -176,7 +174,6 @@ namespace DAL
                 cn.Close();
             }
         }
-
         public List<Usuario> BuscarPorNome(string _nome)
         {
             List<Usuario> usuarios = new List<Usuario>();
@@ -218,7 +215,6 @@ namespace DAL
                 cn.Close();
             }
         }
-
         public Usuario BuscarPorCPF(string _cpf)
         {
             Usuario usuario = new Usuario();
@@ -263,63 +259,105 @@ namespace DAL
                 cn.Close();
             }
         }
-
         public void Alterar(Usuario _usuario)
+        {
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
+            try
             {
-                SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
-                try
-                {
-                    SqlCommand cmd = cn.CreateCommand();
-                    cmd.CommandText = @"UPDATE  Usuario set Nome = @Nome, NomeUsuario = @NomeUsuario, Email = @Email, CPF = @CPF, Ativo =@Ativo, Senha = @Senha WHERE Id = @Id";
+                SqlCommand cmd = cn.CreateCommand();
+                cmd.CommandText = @"UPDATE  Usuario set Nome = @Nome, NomeUsuario = @NomeUsuario, Email = @Email, CPF = @CPF, Ativo =@Ativo, Senha = @Senha WHERE Id = @Id";
 
-                    cmd.CommandType = System.Data.CommandType.Text;
+                cmd.CommandType = System.Data.CommandType.Text;
 
-                    cmd.Parameters.AddWithValue("@Nome", _usuario.Nome);
-                    cmd.Parameters.AddWithValue("@NomeUsuario", _usuario.NomeUsuario);
-                    cmd.Parameters.AddWithValue("@Email", _usuario.Email);
-                    cmd.Parameters.AddWithValue("@CPF", _usuario.CPF);
-                    cmd.Parameters.AddWithValue("@Ativo", _usuario.Ativo);
-                    cmd.Parameters.AddWithValue("@Senha", _usuario.Senha);
-                    cmd.Parameters.AddWithValue("@Id", _usuario.Id);
+                cmd.Parameters.AddWithValue("@Nome", _usuario.Nome);
+                cmd.Parameters.AddWithValue("@NomeUsuario", _usuario.NomeUsuario);
+                cmd.Parameters.AddWithValue("@Email", _usuario.Email);
+                cmd.Parameters.AddWithValue("@CPF", _usuario.CPF);
+                cmd.Parameters.AddWithValue("@Ativo", _usuario.Ativo);
+                cmd.Parameters.AddWithValue("@Senha", _usuario.Senha);
+                cmd.Parameters.AddWithValue("@Id", _usuario.Id);
 
-                    cmd.Connection = cn;
-                    cn.Open();
-                }
-                catch (Exception ex)
-                {
-
-                    throw new Exception("Ocorreu um erro ao tentar alterar um usuário no banco de dados", ex);
-                }
-                finally
-                {
-                    cn.Close();
-                }
+                cmd.Connection = cn;
+                cn.Open();
             }
-        public void Excluir(int _id)
+            catch (Exception ex)
             {
-                SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
-                try
-                {
-                    SqlCommand cmd = cn.CreateCommand();
-                    cmd.CommandText = @"DELETE FROM Usuario WHERE Id = @Id";
-                    cmd.CommandType = System.Data.CommandType.Text;
 
-                    cmd.Parameters.AddWithValue("@Id", _id);
-
-                    cmd.Connection = cn;
-                    cn.Open();
-
-                    cmd.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-
-                    throw new Exception("Ocorreu um erro ao tentar excluir um usuario do banco de dados", ex);
-                }
-                finally
-                {
-                    cn.Close();
-                }
+                throw new Exception("Ocorreu um erro ao tentar alterar um usuário no banco de dados", ex);
+            }
+            finally
+            {
+                cn.Close();
             }
         }
+        public void Excluir(int _id)
+
+        {
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
+            try
+            {
+                SqlCommand cmd = cn.CreateCommand();
+                cmd.CommandText = @"DELETE FROM Usuario WHERE Id = @Id";
+                cmd.CommandType = System.Data.CommandType.Text;
+
+                cmd.Parameters.AddWithValue("@Id", _id);
+
+                cmd.Connection = cn;
+                cn.Open();
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Ocorreu um erro ao tentar excluir um usuario do banco de dados", ex);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+        public bool ValidarPermissao(int _idUsuario, int _idPermissao)
+        {
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = cn;
+                cmd.CommandText = @"SELECT 1 FROM PermissaoGrupoUsuario INNER JOIN UsuarioGrupoUsuario ON PermissaoGrupoUsuario WHERE UsuarioGrupoUsuario.IdUsuario = @IdUsuario AND PermissaoGrupoUsuario.IdPermissao = @IdPermissao ";
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@IdUsuario", _idUsuario);
+                cmd.Parameters.AddWithValue("@IdPermissao", _idPermissao);
+
+                cn.Open();
+
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    if (rd.Read())
+                    {
+                        if (rd.Read())
+                        {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            }
+
+
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu um erro ao tentar validar permissão do banco de dados", ex);
+            }
+
+            finally
+            {
+                cn.Close();
+            }
+
+
+        }
     }
+        
+}
+

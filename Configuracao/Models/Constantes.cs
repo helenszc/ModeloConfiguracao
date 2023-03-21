@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    internal class Constantes
+    public static class Constantes
     {
+        public static int IdUsuarioLogado;
     }
 }

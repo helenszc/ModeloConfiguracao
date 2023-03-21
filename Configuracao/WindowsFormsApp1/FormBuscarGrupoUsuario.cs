@@ -19,8 +19,6 @@ namespace WindowsFormsApp1
             InitializeComponent();
         }
 
-
-
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
                 grupoUsuarioBindingSource.DataSource = new GrupoUsuarioBLL().BuscarTodos();
@@ -62,6 +60,12 @@ namespace WindowsFormsApp1
         }
         private void buttonAlterar_Click(object sender, EventArgs e)
         {
+            int id = ((GrupoUsuario)grupoUsuarioBindingSource.Current).Id;
+            using (FormCadastroGrupoUsuario frm = new FormCadastroGrupoUsuario(id))
+            {
+                frm.ShowDialog();
+            }
+            buttonBuscar_Click(null, null);
 
         }
 

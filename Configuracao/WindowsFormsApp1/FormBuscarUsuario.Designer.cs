@@ -156,6 +156,7 @@
             this.gruposUsuariosDataGridView.RowTemplate.Height = 24;
             this.gruposUsuariosDataGridView.Size = new System.Drawing.Size(313, 467);
             this.gruposUsuariosDataGridView.TabIndex = 2;
+            this.gruposUsuariosDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gruposUsuariosDataGridView_CellContentClick);
             // 
             // dataGridViewTextBoxColumn8
             // 
@@ -214,6 +215,7 @@
             this.buttonAdicionarGrupoUsuario.TabIndex = 3;
             this.buttonAdicionarGrupoUsuario.Text = "Adicionar";
             this.buttonAdicionarGrupoUsuario.UseVisualStyleBackColor = true;
+            this.buttonAdicionarGrupoUsuario.Click += new System.EventHandler(this.buttonAdicionarGrupoUsuario_Click);
             // 
             // buttonExcluirGrupoUsuario
             // 

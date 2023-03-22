@@ -125,7 +125,7 @@ namespace DAL
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
-                cmd.CommandText = "SELECT Id,NomeGrupo FROM Usuario WHERE Id=@Id";
+                cmd.CommandText = "SELECT Id,NomeGrupo FROM GrupoUsuario WHERE Id=@Id";
                 cmd.CommandType = System.Data.CommandType.Text;
 
                 cmd.Parameters.AddWithValue("@Id", _id);

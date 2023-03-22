@@ -15,6 +15,6 @@ namespace Models
         public string Email { get; set; }
         public bool Ativo { get; set; }
         public string Senha { get; set; } 
-        public List<GrupoUsuario> GruposUsuarios { get; set; }
+        public List<GrupoUsuario> GrupoUsuarios { get; set; }
     }
 }

@@ -50,14 +50,6 @@ namespace WindowsFormsApp1
                 }
                 buttonBuscar_Click(null, null);
         }
-
-
-
-        //não inseridos
-        private void BuscarGrupoUsuario_Load(object sender, EventArgs e)
-        {
-
-        }
         private void buttonAlterar_Click(object sender, EventArgs e)
         {
             int id = ((GrupoUsuario)grupoUsuarioBindingSource.Current).Id;
@@ -66,6 +58,14 @@ namespace WindowsFormsApp1
                 frm.ShowDialog();
             }
             buttonBuscar_Click(null, null);
+
+        }
+
+
+
+        //não inseridos
+        private void BuscarGrupoUsuario_Load(object sender, EventArgs e)
+        {
 
         }
 

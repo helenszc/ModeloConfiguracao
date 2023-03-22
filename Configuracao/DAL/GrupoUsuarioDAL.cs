@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,8 +11,8 @@ namespace DAL
 {
     public class GrupoUsuarioDAL
     {
-            public void Inserir(GrupoUsuario _grupoUsuario)
-            {
+        public void Inserir(GrupoUsuario _grupoUsuario)
+        {
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
             try
             {
@@ -37,48 +38,48 @@ namespace DAL
             }
         }
 
-            public List<GrupoUsuario> BuscarTodos()
+        public List<GrupoUsuario> BuscarTodos()
+        {
+            List<GrupoUsuario> grupoUsuarios = new List<GrupoUsuario>();
+            GrupoUsuario grupoUsuario;
+
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
+
+            try
             {
-                List<GrupoUsuario> grupoUsuarios = new List<GrupoUsuario>();
-                GrupoUsuario grupoUsuario;
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = cn;
+                cmd.CommandText = "SELECT Id,NomeGrupo FROM GrupoUsuario";
+                cmd.CommandType = System.Data.CommandType.Text;
 
-                SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
+                cn.Open();
 
-                try
+                using (SqlDataReader rd = cmd.ExecuteReader())
                 {
-                    SqlCommand cmd = new SqlCommand();
-                    cmd.Connection = cn;
-                    cmd.CommandText = "SELECT Id,NomeGrupo FROM GrupoUsuario";
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-                    cn.Open();
-
-                    using (SqlDataReader rd = cmd.ExecuteReader())
+                    while (rd.Read())
                     {
-                        while (rd.Read())
-                        {
-                            grupoUsuario = new GrupoUsuario();
-                            grupoUsuario.Id = Convert.ToInt32(rd["Id"]);
-                            grupoUsuario.NomeGrupo = rd["NomeGrupo"].ToString();
+                        grupoUsuario = new GrupoUsuario();
+                        grupoUsuario.Id = Convert.ToInt32(rd["Id"]);
+                        grupoUsuario.NomeGrupo = rd["NomeGrupo"].ToString();
 
-                            grupoUsuarios.Add(grupoUsuario);
+                        grupoUsuarios.Add(grupoUsuario);
 
-                        }
                     }
-                    return grupoUsuarios;
                 }
-                catch (Exception ex)
-                {
-                    throw new Exception("Ocorreu um erro ao tentar buscar todos os grupos de usuários do banco de dados", ex);
-                }
-                finally
-                {
-                    cn.Close();
-                }
+                return grupoUsuarios;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu um erro ao tentar buscar todos os grupos de usuários do banco de dados", ex);
+            }
+            finally
+            {
+                cn.Close();
+            }
         }
 
-            public GrupoUsuario BuscarPorNomeGrupo(string _nomeGrupo)
-            {
+        public GrupoUsuario BuscarPorNomeGrupo(string _nomeGrupo)
+        {
             GrupoUsuario grupoUsuario = new GrupoUsuario();
 
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
@@ -113,10 +114,10 @@ namespace DAL
             {
                 cn.Close();
             }
-     }
+        }
 
-            public GrupoUsuario BuscarPorId(int _id)
-            {
+        public GrupoUsuario BuscarPorId(int _id)
+        {
             GrupoUsuario grupoUsuario = new GrupoUsuario();
 
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
@@ -152,8 +153,8 @@ namespace DAL
             }
         }
 
-            public void Alterar(GrupoUsuario _grupoUsuario)
-            {
+        public void Alterar(GrupoUsuario _grupoUsuario)
+        {
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
             try
             {
@@ -178,8 +179,8 @@ namespace DAL
                 cn.Close();
             }
         }
-            public void Excluir(int _id)
-            {
+        public void Excluir(int _id)
+        {
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
             try
             {
@@ -204,5 +205,50 @@ namespace DAL
                 cn.Close();
             }
         }
+
+        public List<GrupoUsuario> BuscarPorIdUsuario(int _idUsuario)
+        {
+            GrupoUsuario grupoUsuario = new GrupoUsuario();
+            List<GrupoUsuario> grupoUsuarios = new List<GrupoUsuario>();
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = cn;
+                cmd.CommandText = @"SELECT GrupoUsuario.Id, GrupoUsuario.NomeGrupo FROM GrupoUsuario 
+                                      INNER JOIN UsuarioGrupoUsuario ON GrupoUSuario.Id = UsuarioGrupoUsuario.IdGrupoUsuario
+                                      Where UsuarioGrupoUsuario.IdUsuario = @IdUsuario";
+                cmd.CommandType = System.Data.CommandType.Text;
+
+                cmd.Parameters.AddWithValue("@IdUsuario", _idUsuario);
+
+                cn.Open();
+
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    while (rd.Read())
+                    {
+                        grupoUsuario = new GrupoUsuario();
+                        grupoUsuario.Id = Convert.ToInt32(rd["Id"]);
+                        grupoUsuario.NomeGrupo = rd["NomeGrupo"].ToString();
+                        grupoUsuarios.Add(grupoUsuario);
+                    }
+                }
+                return grupoUsuarios;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu um erro ao tentar buscar o grupo de usuario", ex);
+            }
+            finally
+            {
+                cn.Close();
+            }
+
+        }
+
     }
 }
+
+

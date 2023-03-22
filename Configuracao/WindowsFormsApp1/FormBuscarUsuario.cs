@@ -76,19 +76,5 @@ namespace WindowsFormsApp1
         {
 
         }
-
-        private void gruposUsuariosDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void buttonAdicionarGrupoUsuario_Click(object sender, EventArgs e)
-        {
-            using (FormCadastroGrupoUsuario frm = new FormCadastroGrupoUsuario())
-            {
-                frm.ShowDialog();
-            }
-            buttonBuscar_Click(null, null);
-        }
     }
 }

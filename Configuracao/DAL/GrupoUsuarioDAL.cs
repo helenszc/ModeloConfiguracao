@@ -217,7 +217,7 @@ namespace DAL
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
                 cmd.CommandText = @"SELECT GrupoUsuario.Id, GrupoUsuario.NomeGrupo FROM GrupoUsuario 
-                                      INNER JOIN UsuarioGrupoUsuario ON GrupoUSuario.Id = UsuarioGrupoUsuario.IdGrupoUsuario
+                                      INNER JOIN UsuarioGrupoUsuario ON GrupoUsuario.Id = UsuarioGrupoUsuario.IdGrupoUsuario
                                       Where UsuarioGrupoUsuario.IdUsuario = @IdUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
 

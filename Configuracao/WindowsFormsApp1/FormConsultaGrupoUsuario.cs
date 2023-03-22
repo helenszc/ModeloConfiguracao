@@ -1,0 +1,63 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using BLL;
+using Models;
+
+namespace WindowsFormsApp1
+{
+    
+    public partial class FormConsultaGrupoUsuario : Form
+    {
+        public int Id;
+        public FormConsultaGrupoUsuario()
+        {
+            InitializeComponent();
+        }
+
+
+        //buttonSelecionar
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (grupoUsuarioBindingSource.Count > 0)
+                {
+                    Id = ((GrupoUsuario)grupoUsuarioBindingSource.Current).Id;
+                    Close();
+                }
+                else
+                    MessageBox.Show("Não existe registro para ser selecionado.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+        //buttonBuscar
+        private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                grupoUsuarioBindingSource.DataSource = new GrupoUsuarioBLL().BuscarPorNomeGrupo(textBoxBuscar.Text);
+            }
+            catch (Exception ex )
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void buttonCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+    }
+}

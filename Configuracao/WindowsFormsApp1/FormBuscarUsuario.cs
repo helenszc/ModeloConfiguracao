@@ -70,25 +70,35 @@ namespace WindowsFormsApp1
             buttonBuscar_Click(null, null);
         }
 
+        private void buttonAdicionarGrupoUsuario_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (FormConsultaGrupoUsuario frm = new FormConsultaGrupoUsuario())
+                {
+                    frm.ShowDialog();
 
-        //não inserido
+                    if(frm.Id != 0)
+                    {
+                        int idUsuario = ((Usuario)usuarioBindingSource.Current).Id;
+                        new UsuarioBLL().AdicionarGrupoUsuario(idUsuario, frm.Id);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //nada inserido
         private void buttonExcluirGrupoUsuario_Click(object sender, EventArgs e)
         {
 
         }
-
         private void gruposUsuariosDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
-        }
-
-        private void buttonAdicionarGrupoUsuario_Click(object sender, EventArgs e)
-        {
-            using (FormCadastroGrupoUsuario frm = new FormCadastroGrupoUsuario())
-            {
-                frm.ShowDialog();
-            }
-            buttonBuscar_Click(null, null);
         }
     }
 }

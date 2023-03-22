@@ -75,5 +75,10 @@ namespace BLL
             }
         }
 
+        public void AdicionarGrupoUsuario(int _idUsuario, int _idGrupoUsuario)
+        {
+            if (!new UsuarioDAL().UsuarioPertenceAoGrupo(_idUsuario, _idGrupoUsuario))
+                new UsuarioDAL().AdicionarGrupoUsuario(_idUsuario, _idGrupoUsuario);
+        }
     }
 }

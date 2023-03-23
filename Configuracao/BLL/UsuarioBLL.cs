@@ -8,19 +8,19 @@ namespace BLL
 {
     public class UsuarioBLL
     {
-        public void Inserir(Usuario _usuario)
+        public void Inserir(Usuario _usuario, string _confirmacaoDeSenha)
         {
            
-            ValidarDados(_usuario);
+            ValidarDados(_usuario, _confirmacaoDeSenha);
 
             UsuarioDAL usuarioDAL = new UsuarioDAL();  
             usuarioDAL.Inserir(_usuario);
 
         }
-        public void Alterar(Usuario _usuario)
+        public void Alterar(Usuario _usuario, string _confirmacaoDeSenha)
         {
          
-            ValidarDados(_usuario);
+            ValidarDados(_usuario, _confirmacaoDeSenha);
 
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             usuarioDAL.Alterar(_usuario);
@@ -55,8 +55,11 @@ namespace BLL
             
             return new UsuarioDAL().BuscarPorNomeUsuario(_nomeUsuario);
         }
-        private void ValidarDados(Usuario _usuario)
+        private void ValidarDados(Usuario _usuario, string _confirmacaoDeSenha)
         {
+            if (_usuario.Senha != _confirmacaoDeSenha)
+                throw new Exception("A senha e a confirmação da senha devem ser iguais");
+
             if (_usuario.Senha.Length <= 3)
             {
                 throw new Exception("A senha deve ter mais de 3 caracteres");
@@ -74,7 +77,6 @@ namespace BLL
                 throw new Exception("Você não tem permissão de realizar essa operação. Procure o administrador para o auxiliar");
             }
         }
-
         public void AdicionarGrupoUsuario(int _idUsuario, int _idGrupoUsuario)
         {
             if (!new UsuarioDAL().UsuarioPertenceAoGrupo(_idUsuario, _idGrupoUsuario))

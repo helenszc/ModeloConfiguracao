@@ -18,7 +18,6 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
         }
-
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
                 grupoUsuarioBindingSource.DataSource = new GrupoUsuarioBLL().BuscarTodos();

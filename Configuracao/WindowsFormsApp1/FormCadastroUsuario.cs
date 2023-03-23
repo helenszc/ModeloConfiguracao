@@ -40,7 +40,7 @@ namespace WindowsFormsApp1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Registro salvo com sucesso!");
+                MessageBox.Show(ex.Message);
             }
             finally
             {

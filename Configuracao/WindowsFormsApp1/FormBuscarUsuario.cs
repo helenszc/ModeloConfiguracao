@@ -62,8 +62,8 @@ namespace WindowsFormsApp1
 
         private void buttonAlterar_Click(object sender, EventArgs e)
         {
-            int id = ((Usuario)usuarioBindingSource.Current).Id;
-            using (FormCadastroUsuario frm = new FormCadastroUsuario(id))
+            int _id = ((Usuario)usuarioBindingSource.Current).Id;
+            using (FormCadastroUsuario frm = new FormCadastroUsuario(_id))
             {
                 frm.ShowDialog();
             }
@@ -94,6 +94,17 @@ namespace WindowsFormsApp1
         //nada inserido
         private void buttonExcluirGrupoUsuario_Click(object sender, EventArgs e)
         {
+            try
+            {
+                int idGrupoUsuario = ((GrupoUsuario)gruposUsuariosBindingSource.Current).Id;
+                int idUsuario = ((Usuario)usuarioBindingSource.Current).Id;
+                new UsuarioBLL().RemoverGrupoUsuario(idUsuario, idGrupoUsuario);
+                gruposUsuariosBindingSource.RemoveCurrent();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
         private void gruposUsuariosDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)

@@ -267,7 +267,7 @@ namespace DAL
             try
             {
                 SqlCommand cmd = cn.CreateCommand();
-                cmd.CommandText = @"UPDATE  Usuario set Nome = @Nome, NomeUsuario = @NomeUsuario, Email = @Email, CPF = @CPF, Ativo =@Ativo, Senha = @Senha WHERE Id = @Id";
+                cmd.CommandText = @"UPDATE  Usuario SET Nome = @Nome, NomeUsuario = @NomeUsuario, Email = @Email, CPF = @CPF, Ativo = @Ativo, Senha = @Senha WHERE Id = @Id";
 
                 cmd.CommandType = System.Data.CommandType.Text;
 
@@ -364,24 +364,23 @@ namespace DAL
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
             try
             {
-                SqlCommand cmd = new SqlCommand();
+                SqlCommand cmd = cn.CreateCommand();
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT 1 FROM PermissaoGrupoUsuario 
-                                  WHERE IdUsuario = @IdUsuario AND IdGrupoUsuario = @IdGrupoUsuario";
+                cmd.CommandText = @"SELECT 1 FROM UsuarioGrupoUsuario 
+                                  WHERE IdUsuario= @IdUsuario AND IdGrupoUsuario = @IdGrupoUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupoUsuario);
+
                 cmd.Parameters.AddWithValue("@IdUsuario", _idUsuario);
+                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupoUsuario);
 
                 cn.Open();
+                cmd.ExecuteNonQuery();
 
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {
                     if (rd.Read())
-                    {
-                        if (rd.Read())
-                        {
-                            return true;
-                        }
+                    { 
+                         return true;    
                     }
                     return false;
                 }
@@ -414,12 +413,40 @@ namespace DAL
 
                 cmd.Connection = cn;
                 cn.Open();
-                cmd.ExecuteNonQuery();
+
             }
             catch (Exception ex)
             {
 
                 throw new Exception("Ocorreu um erro ao tentar vincular um grupo a um usuario no banco de dados", ex);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
+        public void RemoverGrupoUsuario(int _idUsuario, int _idGrupoUsuario)
+        {
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
+            try
+            {
+                SqlCommand cmd = cn.CreateCommand();
+                cmd.CommandText = @"DELETE FROM UsuarioGrupoUsuario WHERE IdUsuario = @IdUsuario AND IdGrupoUsuario = @IdGrupoUsuario";
+                cmd.CommandType = System.Data.CommandType.Text;
+
+                cmd.Parameters.AddWithValue("@IdUsuario", _idUsuario);
+                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupoUsuario);
+
+                cmd.Connection = cn;
+                cn.Open();
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Ocorreu um erro ao remover um grupo de usuário no banco de dados", ex);
             }
             finally
             {

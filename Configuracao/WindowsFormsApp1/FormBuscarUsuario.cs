@@ -62,11 +62,10 @@ namespace WindowsFormsApp1
 
         private void buttonAlterar_Click(object sender, EventArgs e)
         {
-            int _id = ((Usuario)usuarioBindingSource.Current).Id;
-            using (FormCadastroUsuario frm = new FormCadastroUsuario(_id))
+            int id = ((Usuario)usuarioBindingSource.Current).Id;
+            using (FormCadastroUsuario frm = new FormCadastroUsuario(id))
             {
                 frm.ShowDialog();
-
             }
             buttonBuscar_Click(null, null);
         }

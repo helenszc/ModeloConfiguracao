@@ -271,16 +271,17 @@ namespace DAL
 
                 cmd.CommandType = System.Data.CommandType.Text;
 
-                cmd.Parameters.AddWithValue("@Nome", _usuario.Nome);
-                cmd.Parameters.AddWithValue("@NomeUsuario", _usuario.NomeUsuario);
-                cmd.Parameters.AddWithValue("@Email", _usuario.Email);
-                cmd.Parameters.AddWithValue("@CPF", _usuario.CPF);
-                cmd.Parameters.AddWithValue("@Ativo", _usuario.Ativo);
-                cmd.Parameters.AddWithValue("@Senha", _usuario.Senha);
-                cmd.Parameters.AddWithValue("@Id", _usuario.Id);
+                    cmd.Parameters.AddWithValue("@Nome", _usuario.Nome);
+                    cmd.Parameters.AddWithValue("@NomeUsuario", _usuario.NomeUsuario);
+                    cmd.Parameters.AddWithValue("@Email", _usuario.Email);
+                    cmd.Parameters.AddWithValue("@CPF", _usuario.CPF);
+                    cmd.Parameters.AddWithValue("@Ativo", _usuario.Ativo);
+                    cmd.Parameters.AddWithValue("@Senha", _usuario.Senha);
+                    cmd.Parameters.AddWithValue("@Id", _usuario.Id);
 
-                cmd.Connection = cn;
-                cn.Open();
+                    cmd.Connection = cn;
+                    cn.Open();
+
             }
             catch (Exception ex)
             {

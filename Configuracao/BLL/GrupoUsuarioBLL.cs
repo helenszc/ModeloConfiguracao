@@ -28,8 +28,7 @@ namespace BLL
 
         public void Alterar(GrupoUsuario _grupoUsuario)
         {
-            GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
-            grupoUsuarioDAL.Alterar(_grupoUsuario);
+            new GrupoUsuarioDAL().Alterar(_grupoUsuario);
         }
 
         public void Excluir(int _id)
@@ -47,7 +46,7 @@ namespace BLL
             return new GrupoUsuarioDAL().BuscarPorId(_id);
         }
 
-        public GrupoUsuario BuscarPorNomeGrupo(string _nomeGrupo)
+        public List<GrupoUsuario> BuscarPorNomeGrupo(string _nomeGrupo)
         {
             return new GrupoUsuarioDAL().BuscarPorNomeGrupo(_nomeGrupo);
         }

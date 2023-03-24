@@ -46,6 +46,7 @@ namespace WindowsFormsApp1
             {
                 Close();
             }
+
         }   
 
         private void FormCadastroUsuario_Load(object sender, EventArgs e)

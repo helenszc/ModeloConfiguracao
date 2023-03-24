@@ -78,9 +78,10 @@ namespace DAL
             }
         }
 
-        public GrupoUsuario BuscarPorNomeGrupo(string _nomeGrupo)
+        public List<GrupoUsuario> BuscarPorNomeGrupo(string _nomeGrupo)
         {
-            GrupoUsuario grupoUsuario = new GrupoUsuario();
+           List <GrupoUsuario> gruposUsuarios = new List<GrupoUsuario>();
+            GrupoUsuario grupoUsuario;
 
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
 
@@ -88,10 +89,10 @@ namespace DAL
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
-                cmd.CommandText = "SELECT Id,NomeGrupo FROM GrupoUsuario WHERE NomeGrupo = @NomeGrupo";
+                cmd.CommandText = "SELECT Id,NomeGrupo FROM GrupoUsuario WHERE NomeGrupo LIKE @NomeGrupo";
                 cmd.CommandType = System.Data.CommandType.Text;
 
-                cmd.Parameters.AddWithValue("@NomeGrupo", _nomeGrupo);
+                cmd.Parameters.AddWithValue("@NomeGrupo", "%"+ _nomeGrupo+ "%");
 
                 cn.Open();
 
@@ -99,12 +100,14 @@ namespace DAL
                 {
                     if (rd.Read())
                     {
+                        grupoUsuario = new GrupoUsuario();
                         grupoUsuario.Id = Convert.ToInt32(rd["Id"]);
                         grupoUsuario.NomeGrupo = rd["NomeGrupo"].ToString();
+                        gruposUsuarios.Add(grupoUsuario);
 
                     }
                 }
-                return grupoUsuario;
+                return gruposUsuarios;
             }
             catch (Exception ex)
             {
@@ -159,7 +162,7 @@ namespace DAL
             try
             {
                 SqlCommand cmd = cn.CreateCommand();
-                cmd.CommandText = @"UPDATE  GrupoUsuario set NomeGrupo = @NomeGrupo WHERE Id = @Id";
+                cmd.CommandText = @"UPDATE  GrupoUsuario SET NomeGrupo = @NomeGrupo WHERE Id = @Id";
 
                 cmd.CommandType = System.Data.CommandType.Text;
 
@@ -168,6 +171,7 @@ namespace DAL
 
                 cmd.Connection = cn;
                 cn.Open();
+                cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {

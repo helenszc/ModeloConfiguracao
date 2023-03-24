@@ -281,6 +281,7 @@ namespace DAL
 
                 cmd.Connection = cn;
                 cn.Open();
+                cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
@@ -382,8 +383,8 @@ namespace DAL
                     { 
                          return true;    
                     }
-                    return false;
                 }
+                    return false;
             }
 
             catch (Exception ex)
@@ -413,6 +414,7 @@ namespace DAL
 
                 cmd.Connection = cn;
                 cn.Open();
+                cmd.ExecuteNonQuery();
 
             }
             catch (Exception ex)

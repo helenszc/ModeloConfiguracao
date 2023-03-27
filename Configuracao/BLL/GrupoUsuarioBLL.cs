@@ -57,9 +57,9 @@ namespace BLL
                 new GrupoUsuarioDAL().AdicionarPermissao(_idGrupoUsuario, _idPermissao);
         }
 
-        public void RemoverPermissao(int idGrupo, int idPermissao)
+        public void RemoverPermissao(int _idGrupoUsuario, int _idPermissao)
         {
-            throw new NotImplementedException();
+            new GrupoUsuarioDAL().RemoverPermissao(_idGrupoUsuario, _idGrupoUsuario);
         }
     }
 }

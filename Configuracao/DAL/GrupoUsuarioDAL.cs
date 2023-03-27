@@ -318,9 +318,32 @@ namespace DAL
             }
         }
 
-        public void RemoverPermissao(int idGrupoUsuario1, int idGrupoUsuario2)
+        public void RemoverPermissao(int _idGrupoUsuario, int _idPermissao)
         {
-            throw new NotImplementedException();
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
+            try
+            {
+                SqlCommand cmd = cn.CreateCommand();
+                cmd.CommandText = @"DELETE FROM PermissaoGrupoUsuario 
+                                    WHERE IdGrupoUsuario = @IdGrupoUsuario AND IdPermissao = @IdPermissao";
+
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupoUsuario);
+                cmd.Parameters.AddWithValue("@IdPermissao", _idPermissao);
+
+                cmd.Connection = cn;
+                cn.Open();
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu erro ao tentar excluir a permissão de um grupo de usuário no banco de dados.", ex);
+            }
+            finally
+            {
+                cn.Close();
+            }
         }
     }
 }

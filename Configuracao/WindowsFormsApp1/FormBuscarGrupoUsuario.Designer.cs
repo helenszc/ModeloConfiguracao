@@ -208,6 +208,7 @@
             this.buttonExcluirPermissao.TabIndex = 4;
             this.buttonExcluirPermissao.Text = "Excluir";
             this.buttonExcluirPermissao.UseVisualStyleBackColor = true;
+            this.buttonExcluirPermissao.Click += new System.EventHandler(this.buttonExcluirPermissao_Click);
             // 
             // buttonAdicionarPermissao
             // 

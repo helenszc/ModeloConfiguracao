@@ -16,5 +16,7 @@ namespace Models
         public bool Ativo { get; set; }
         public string Senha { get; set; } 
         public List<GrupoUsuario> GruposUsuarios { get; set; }
+
+
     }
 }

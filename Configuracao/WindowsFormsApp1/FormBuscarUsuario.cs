@@ -98,7 +98,6 @@ namespace WindowsFormsApp1
             }
         }
 
-        //nada inserido
         private void buttonExcluirGrupoUsuario_Click(object sender, EventArgs e)
         {
             try
@@ -114,6 +113,8 @@ namespace WindowsFormsApp1
             }
 
         }
+
+        //apagar
         private void gruposUsuariosDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 

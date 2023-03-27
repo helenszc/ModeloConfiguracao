@@ -252,6 +252,49 @@ namespace DAL
 
         }
 
+
+        public bool GrupoUsuarioPertenceAPermissao(int _idGrupoUsuario, int _idPermissao)
+        {
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
+            try
+            {
+                SqlCommand cmd = cn.CreateCommand();
+                cmd.Connection = cn;
+                cmd.CommandText = @"SELECT 1 FROM PermissaoGrupoUsuario
+                                  WHERE IdGrupoUsuario= @IdGrupoUsuario AND IdPermisao = @IdPermissao";
+                cmd.CommandType = System.Data.CommandType.Text;
+
+                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupoUsuario);
+                cmd.Parameters.AddWithValue("@IdPermissao", _idPermissao);
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
+
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    if (rd.Read())
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu um erro ao tentar verificar vinculo entre permissão e grupo de usuário no banco de dados", ex);
+            }
+
+            finally
+            {
+                cn.Close();
+            }
+        }
+
+        public void AdicionarPermissao(int idGrupoUsuario, int idPermissao)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

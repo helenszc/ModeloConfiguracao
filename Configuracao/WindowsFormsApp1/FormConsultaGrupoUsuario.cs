@@ -23,7 +23,6 @@ namespace WindowsFormsApp1
         }
 
 
-        //buttonSelecionar
         private void buttonSelecionar_Click(object sender, EventArgs e)
         {
             try

@@ -59,7 +59,26 @@ namespace WindowsFormsApp1
             buttonBuscar_Click(null, null);
 
         }
+        private void buttonAdicionarPermissao_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (FormConsultaPermissao frm = new FormConsultaPermissao())
+                {
+                    frm.ShowDialog();
 
+                    if (frm.Id != 0)
+                    {
+                        int idGrupoUsuario = ((GrupoUsuario)grupoUsuarioBindingSource.Current).Id;
+                        new GrupoUsuarioBLL().AdicionarPermissao(idGrupoUsuario, frm.Id);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
 
         //não inseridos
@@ -68,9 +87,5 @@ namespace WindowsFormsApp1
 
         }
 
-        private void buttonAdicionarPermissao_Click(object sender, EventArgs e)
-        {
-            
-        }
     }
 }

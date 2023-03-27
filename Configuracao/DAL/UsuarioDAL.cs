@@ -389,7 +389,7 @@ namespace DAL
 
             catch (Exception ex)
             {
-                throw new Exception("Ocorreu um erro ao tentar existencia do grupo vinculado ao usuário no banco de dados", ex);
+                throw new Exception("Ocorreu erro ao tentar vincular um grupo a um usuário no banco de dados.", ex);
             }
 
             finally

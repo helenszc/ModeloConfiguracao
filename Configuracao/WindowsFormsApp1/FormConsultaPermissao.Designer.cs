@@ -31,13 +31,13 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonBuscar = new System.Windows.Forms.Button();
             this.permissaoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.permissaoDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBoxBuscar = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.permissaoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.permissaoDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -66,23 +66,15 @@
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // textBox1
+            // buttonBuscar
             // 
-            this.textBox1.Location = new System.Drawing.Point(27, 89);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(661, 22);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(694, 88);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.buttonBuscar_Click);
+            this.buttonBuscar.Location = new System.Drawing.Point(694, 88);
+            this.buttonBuscar.Name = "buttonBuscar";
+            this.buttonBuscar.Size = new System.Drawing.Size(75, 23);
+            this.buttonBuscar.TabIndex = 3;
+            this.buttonBuscar.Text = "Buscar";
+            this.buttonBuscar.UseVisualStyleBackColor = true;
+            this.buttonBuscar.Click += new System.EventHandler(this.buttonBuscar_Click);
             // 
             // permissaoBindingSource
             // 
@@ -98,14 +90,23 @@
             this.permissaoDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn2});
             this.permissaoDataGridView.DataSource = this.permissaoBindingSource;
-            this.permissaoDataGridView.Location = new System.Drawing.Point(27, 130);
+            this.permissaoDataGridView.Location = new System.Drawing.Point(27, 117);
             this.permissaoDataGridView.Name = "permissaoDataGridView";
             this.permissaoDataGridView.ReadOnly = true;
             this.permissaoDataGridView.RowHeadersWidth = 51;
             this.permissaoDataGridView.RowTemplate.Height = 24;
-            this.permissaoDataGridView.Size = new System.Drawing.Size(742, 291);
+            this.permissaoDataGridView.Size = new System.Drawing.Size(742, 304);
             this.permissaoDataGridView.TabIndex = 5;
             this.permissaoDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.permissaoDataGridView_CellContentClick);
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Descricao";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Descrição";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
             // button2
             // 
@@ -127,25 +128,24 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.buttonSelecionar_Click);
             // 
-            // dataGridViewTextBoxColumn2
+            // textBoxBuscar
             // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Descricao";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Descrição";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.textBoxBuscar.Location = new System.Drawing.Point(27, 89);
+            this.textBoxBuscar.Name = "textBoxBuscar";
+            this.textBoxBuscar.Size = new System.Drawing.Size(661, 22);
+            this.textBoxBuscar.TabIndex = 6;
+            this.textBoxBuscar.TextChanged += new System.EventHandler(this.textBoxBuscar_TextChanged);
             // 
             // FormConsultaPermissao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 462);
+            this.Controls.Add(this.textBoxBuscar);
             this.Controls.Add(this.permissaoDataGridView);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.buttonBuscar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.KeyPreview = true;
@@ -167,12 +167,12 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonBuscar;
         private System.Windows.Forms.BindingSource permissaoBindingSource;
         private System.Windows.Forms.DataGridView permissaoDataGridView;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.TextBox textBoxBuscar;
     }
 }

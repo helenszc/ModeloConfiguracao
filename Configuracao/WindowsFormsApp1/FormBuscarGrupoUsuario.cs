@@ -68,5 +68,9 @@ namespace WindowsFormsApp1
 
         }
 
+        private void buttonAdicionarPermissao_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

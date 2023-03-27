@@ -24,7 +24,7 @@ namespace WindowsFormsApp1
 
 
         //buttonSelecionar
-        private void button3_Click(object sender, EventArgs e)
+        private void buttonSelecionar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -44,8 +44,7 @@ namespace WindowsFormsApp1
         }
 
 
-        //buttonBuscar
-        private void button4_Click(object sender, EventArgs e)
+        private void buttonBuscar_Click(object sender, EventArgs e)
         {
             try
             {

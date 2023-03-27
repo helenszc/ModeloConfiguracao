@@ -87,5 +87,19 @@ namespace WindowsFormsApp1
 
         }
 
+        private void buttonExcluirPermissao_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int idGrupoUsuario = ((GrupoUsuario)grupoUsuarioBindingSource.Current).Id;
+                int idPermissao = ((Permissao)permissoesBindingSource.Current).Id;
+                new GrupoUsuarioBLL().RemoverPermissao(idGrupoUsuario, idPermissao);
+                permissoesBindingSource.RemoveCurrent();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

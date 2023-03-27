@@ -317,6 +317,11 @@ namespace DAL
                 cn.Close();
             }
         }
+
+        public void RemoverPermissao(int idGrupoUsuario1, int idGrupoUsuario2)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

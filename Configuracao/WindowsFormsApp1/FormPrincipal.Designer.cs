@@ -60,21 +60,23 @@
             // usuáriosToolStripMenuItem
             // 
             this.usuáriosToolStripMenuItem.Name = "usuáriosToolStripMenuItem";
-            this.usuáriosToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
+            this.usuáriosToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
+            this.usuáriosToolStripMenuItem.Size = new System.Drawing.Size(264, 26);
             this.usuáriosToolStripMenuItem.Text = "Usuários";
             this.usuáriosToolStripMenuItem.Click += new System.EventHandler(this.usuáriosToolStripMenuItem_Click);
             // 
             // gruposDeUsuárioToolStripMenuItem
             // 
             this.gruposDeUsuárioToolStripMenuItem.Name = "gruposDeUsuárioToolStripMenuItem";
-            this.gruposDeUsuárioToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
+            this.gruposDeUsuárioToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
+            this.gruposDeUsuárioToolStripMenuItem.Size = new System.Drawing.Size(264, 26);
             this.gruposDeUsuárioToolStripMenuItem.Text = "Grupos de usuário";
             this.gruposDeUsuárioToolStripMenuItem.Click += new System.EventHandler(this.gruposDeUsuárioToolStripMenuItem_Click);
             // 
             // permissõesToolStripMenuItem
             // 
             this.permissõesToolStripMenuItem.Name = "permissõesToolStripMenuItem";
-            this.permissõesToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
+            this.permissõesToolStripMenuItem.Size = new System.Drawing.Size(264, 26);
             this.permissõesToolStripMenuItem.Text = "Permissões";
             // 
             // FormPrincipal
@@ -87,6 +89,7 @@
             this.Name = "FormPrincipal";
             this.Text = "Módulo Configuração";
             this.Load += new System.EventHandler(this.FormPrincipal_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormPrincipal_KeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

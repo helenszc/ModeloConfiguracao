@@ -47,5 +47,12 @@ namespace WindowsFormsApp1
                 grupoUsuarioBindingSource.DataSource = new GrupoUsuarioBLL().BuscarPorId(Id);
         }
 
+        private void FormCadastroGrupoUsuario_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                Close();
+            }
+        }
     }
 }

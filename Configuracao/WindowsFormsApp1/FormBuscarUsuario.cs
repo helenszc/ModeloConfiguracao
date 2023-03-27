@@ -120,6 +120,12 @@ namespace WindowsFormsApp1
 
         }
 
-
+        private void FormBuscarUsuario_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                Close();
+            }
+        }
     }
 }

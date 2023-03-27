@@ -246,6 +246,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Buscar grupo de usuário";
             this.Load += new System.EventHandler(this.BuscarGrupoUsuario_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormBuscarGrupoUsuario_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.grupoUsuarioBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grupoUsuarioDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.permissoesBindingSource)).EndInit();

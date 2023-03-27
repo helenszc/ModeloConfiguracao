@@ -39,6 +39,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.grupoUsuarioBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
+            // nomeGrupoLabel
+            // 
+            nomeGrupoLabel.AutoSize = true;
+            nomeGrupoLabel.Location = new System.Drawing.Point(84, 146);
+            nomeGrupoLabel.Name = "nomeGrupoLabel";
+            nomeGrupoLabel.Size = new System.Drawing.Size(84, 16);
+            nomeGrupoLabel.TabIndex = 2;
+            nomeGrupoLabel.Text = "Nome Grupo";
+            // 
             // label1
             // 
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -61,15 +70,6 @@
             // grupoUsuarioBindingSource
             // 
             this.grupoUsuarioBindingSource.DataSource = typeof(Models.GrupoUsuario);
-            // 
-            // nomeGrupoLabel
-            // 
-            nomeGrupoLabel.AutoSize = true;
-            nomeGrupoLabel.Location = new System.Drawing.Point(84, 146);
-            nomeGrupoLabel.Name = "nomeGrupoLabel";
-            nomeGrupoLabel.Size = new System.Drawing.Size(84, 16);
-            nomeGrupoLabel.TabIndex = 2;
-            nomeGrupoLabel.Text = "Nome Grupo";
             // 
             // buttonSalvar
             // 
@@ -104,6 +104,7 @@
             this.Name = "FormCadastroGrupoUsuario";
             this.Text = "Cadastro de grupo de usuário";
             this.Load += new System.EventHandler(this.FormCadastroGrupoUsuario_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormCadastroGrupoUsuario_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.grupoUsuarioBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

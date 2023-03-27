@@ -151,6 +151,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Consultar Grupos de Usuário";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormConsultaGrupoUsuario_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.grupoUsuarioBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grupoUsuarioDataGridView)).EndInit();
             this.ResumeLayout(false);

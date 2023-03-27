@@ -156,6 +156,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Consulta de Permissões";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormConsultaPermissao_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.permissaoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.permissaoDataGridView)).EndInit();
             this.ResumeLayout(false);

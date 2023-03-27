@@ -173,7 +173,7 @@
             this.buttonBuscar.Name = "buttonBuscar";
             this.buttonBuscar.Size = new System.Drawing.Size(75, 23);
             this.buttonBuscar.TabIndex = 3;
-            this.buttonBuscar.Text = "Buscar";
+            this.buttonBuscar.Text = "&Buscar";
             this.buttonBuscar.UseVisualStyleBackColor = true;
             this.buttonBuscar.Click += new System.EventHandler(this.buttonBuscar_Click);
             // 
@@ -254,6 +254,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "gestão de usuário";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormBuscarUsuario_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.usuarioBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.usuarioDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gruposUsuariosBindingSource)).EndInit();

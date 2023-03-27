@@ -291,9 +291,31 @@ namespace DAL
             }
         }
 
-        public void AdicionarPermissao(int idGrupoUsuario, int idPermissao)
+        public void AdicionarPermissao(int _idGrupoUsuario, int _idPermissao)
         {
-            throw new NotImplementedException();
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
+            try
+            {
+                SqlCommand cmd = cn.CreateCommand();
+                cmd.CommandText = "INSERT INTO PermissaoGrupoUsuario(IdGrupoUsuario, IdPermissao) VALUES(@IdGrupoUsuario, @IdPermissao)";
+                cmd.CommandType = System.Data.CommandType.Text;
+
+                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupoUsuario);
+                cmd.Parameters.AddWithValue("@IdPermissao", _idPermissao);
+
+                cmd.Connection = cn;
+                cn.Open();
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu erro ao tentar inserir permissão um grupo de usuário no banco de dados.", ex);
+            }
+            finally
+            {
+                cn.Close();
+            }
         }
     }
 }

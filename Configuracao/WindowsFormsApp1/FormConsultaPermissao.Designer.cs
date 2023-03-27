@@ -35,8 +35,8 @@
             this.permissaoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.permissaoDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.buttonCancelar = new System.Windows.Forms.Button();
+            this.buttonSelecionar = new System.Windows.Forms.Button();
             this.textBoxBuscar = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.permissaoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.permissaoDataGridView)).BeginInit();
@@ -108,25 +108,25 @@
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
-            // button2
+            // buttonCancelar
             // 
-            this.button2.Location = new System.Drawing.Point(694, 427);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "button1";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.buttonCancelar_Click);
+            this.buttonCancelar.Location = new System.Drawing.Point(694, 427);
+            this.buttonCancelar.Name = "buttonCancelar";
+            this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancelar.TabIndex = 3;
+            this.buttonCancelar.Text = "Cancelar";
+            this.buttonCancelar.UseVisualStyleBackColor = true;
+            this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
             // 
-            // button3
+            // buttonSelecionar
             // 
-            this.button3.Location = new System.Drawing.Point(613, 427);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "button1";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.buttonSelecionar_Click);
+            this.buttonSelecionar.Location = new System.Drawing.Point(598, 427);
+            this.buttonSelecionar.Name = "buttonSelecionar";
+            this.buttonSelecionar.Size = new System.Drawing.Size(90, 23);
+            this.buttonSelecionar.TabIndex = 3;
+            this.buttonSelecionar.Text = "Selecionar";
+            this.buttonSelecionar.UseVisualStyleBackColor = true;
+            this.buttonSelecionar.Click += new System.EventHandler(this.buttonSelecionar_Click);
             // 
             // textBoxBuscar
             // 
@@ -143,8 +143,8 @@
             this.ClientSize = new System.Drawing.Size(800, 462);
             this.Controls.Add(this.textBoxBuscar);
             this.Controls.Add(this.permissaoDataGridView);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.buttonSelecionar);
+            this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.buttonBuscar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -170,8 +170,8 @@
         private System.Windows.Forms.Button buttonBuscar;
         private System.Windows.Forms.BindingSource permissaoBindingSource;
         private System.Windows.Forms.DataGridView permissaoDataGridView;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonCancelar;
+        private System.Windows.Forms.Button buttonSelecionar;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.TextBox textBoxBuscar;
     }

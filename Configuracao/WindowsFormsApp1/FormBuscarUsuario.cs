@@ -49,8 +49,9 @@ namespace WindowsFormsApp1
                 int id = ((Usuario)usuarioBindingSource.Current).Id;
                 new UsuarioBLL().Excluir(id);
                 usuarioBindingSource.RemoveCurrent();
-
                 MessageBox.Show("Registro excluído com sucesso");
+
+                
             }
             catch (Exception ex)
             {
@@ -60,11 +61,19 @@ namespace WindowsFormsApp1
 
         private void buttonAdicionarUsuario_Click(object sender, EventArgs e)
         {
-            using (FormCadastroUsuario frm = new FormCadastroUsuario())
+            try
             {
-                frm.ShowDialog();
+                using (FormCadastroUsuario frm = new FormCadastroUsuario())
+                {
+                    frm.ShowDialog();
+                }
+                buttonBuscar_Click(null, null);
             }
-            buttonBuscar_Click(null,null);
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void buttonAlterar_Click(object sender, EventArgs e)

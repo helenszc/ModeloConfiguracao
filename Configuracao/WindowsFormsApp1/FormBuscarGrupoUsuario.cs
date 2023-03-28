@@ -24,39 +24,63 @@ namespace WindowsFormsApp1
         }
         private void buttonExcluirGrupoUsuario_Click(object sender, EventArgs e)
         {
-            if (grupoUsuarioBindingSource.Count <= 0)
+            try
             {
-                MessageBox.Show("Não há registro selecionado para ser excluído");
-                return;
-            }
+                if (grupoUsuarioBindingSource.Count <= 0)
+                {
+                    MessageBox.Show("Não há registro selecionado para ser excluído");
+                    return;
+                }
 
-            if (MessageBox.Show("Deseja excluir esse registro?", "Atenção", MessageBoxButtons.YesNo) == DialogResult.No)
+                if (MessageBox.Show("Deseja excluir esse registro?", "Atenção", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    return;
+                }
+
+                int id = ((GrupoUsuario)grupoUsuarioBindingSource.Current).Id;
+                new GrupoUsuarioBLL().Excluir(id);
+                grupoUsuarioBindingSource.RemoveCurrent();
+                MessageBox.Show("Registro excluído com sucesso");
+            }
+            catch(Exception ex)
             {
-                return;
+                MessageBox.Show(ex.Message);
             }
+            
 
-            int id = ((GrupoUsuario)grupoUsuarioBindingSource.Current).Id;
-            new GrupoUsuarioBLL().Excluir(id);
-            grupoUsuarioBindingSource.RemoveCurrent();
-
-            MessageBox.Show("Registro excluído com sucesso");
         }
         private void buttonAdicionarGrupoUsuario_Click(object sender, EventArgs e)
         {
+            try
+            {
                 using (FormCadastroGrupoUsuario frm = new FormCadastroGrupoUsuario())
                 {
                     frm.ShowDialog();
                 }
                 buttonBuscar_Click(null, null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
         private void buttonAlterar_Click(object sender, EventArgs e)
         {
-            int id = ((GrupoUsuario)grupoUsuarioBindingSource.Current).Id;
-            using (FormCadastroGrupoUsuario frm = new FormCadastroGrupoUsuario(id))
+            try
             {
-                frm.ShowDialog();
+                int id = ((GrupoUsuario)grupoUsuarioBindingSource.Current).Id;
+                using (FormCadastroGrupoUsuario frm = new FormCadastroGrupoUsuario(id))
+                {
+                    frm.ShowDialog();
+                }
+                buttonBuscar_Click(null, null);
             }
-            buttonBuscar_Click(null, null);
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+           
 
         }
         private void buttonAdicionarPermissao_Click(object sender, EventArgs e)

@@ -28,16 +28,26 @@ namespace WindowsFormsApp1
         }
         private void buttonSalvar_Click(object sender, EventArgs e)
         {
-            GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
-            grupoUsuarioBindingSource.EndEdit();
+            try
+            {
+                GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
+                grupoUsuarioBindingSource.EndEdit();
 
-            if (Id == 0)
-                grupoUsuarioBLL.Inserir((GrupoUsuario)grupoUsuarioBindingSource.Current);
-            else
-                grupoUsuarioBLL.Alterar((GrupoUsuario)grupoUsuarioBindingSource.Current);
+                if (Id == 0)
+                    grupoUsuarioBLL.Inserir((GrupoUsuario)grupoUsuarioBindingSource.Current);
+                else
+                    grupoUsuarioBLL.Alterar((GrupoUsuario)grupoUsuarioBindingSource.Current);
+            }
+            catch
+            {
+                MessageBox.Show("Registro salvo com sucesso!");
 
-            MessageBox.Show("Registro salvo com sucesso!");
-            Close();
+            }
+            finally
+            {
+                Close();
+            }
+            
         }
         private void FormCadastroGrupoUsuario_Load(object sender, EventArgs e)
         {

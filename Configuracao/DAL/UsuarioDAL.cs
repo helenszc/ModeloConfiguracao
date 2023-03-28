@@ -187,6 +187,7 @@ namespace DAL
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@Nome", "%" + _nome + "%");
                 cn.Open();
+                cmd.ExecuteNonQuery();
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {
                     while (rd.Read())
@@ -327,21 +328,21 @@ namespace DAL
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT 1 FROM PermissaoGrupoUsuario INNER JOIN UsuarioGrupoUsuario ON PermissaoGrupoUsuario WHERE UsuarioGrupoUsuario.IdUsuario = @IdUsuario AND PermissaoGrupoUsuario.IdPermissao = @IdPermissao ";
+                cmd.CommandText = @"SELECT 1 FROM PermissaoGrupoUsuario 
+                                    INNER JOIN UsuarioGrupoUsuario ON PermissaoGrupoUsuario.IdGrupoUsuario = UsuarioGrupoUsuario.IdGrupoUsuario  
+                                    WHERE UsuarioGrupoUsuario.IdUsuario = @IdUsuario AND PermissaoGrupoUsuario.IdPermissao = @IdPermissao ";
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@IdUsuario", _idUsuario);
                 cmd.Parameters.AddWithValue("@IdPermissao", _idPermissao);
 
                 cn.Open();
+                cmd.ExecuteNonQuery();
 
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {
                     if (rd.Read())
                     {
-                        if (rd.Read())
-                        {
-                            return true;
-                        }
+                        return true;
                     }
                     return false;
                 }
@@ -380,11 +381,11 @@ namespace DAL
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {
                     if (rd.Read())
-                    { 
-                         return true;    
+                    {
+                        return true;
                     }
                 }
-                    return false;
+                return false;
             }
 
             catch (Exception ex)

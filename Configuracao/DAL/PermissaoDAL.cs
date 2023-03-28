@@ -164,6 +164,7 @@ namespace DAL
 
                 cmd.Connection = cn;
                 cn.Open();
+                cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
@@ -195,6 +196,44 @@ namespace DAL
             {
 
                 throw new Exception("Ocorreu um erro ao tentar excluir uma permissao do banco de dados", ex);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
+        public List<Permissao> BuscarPorIdGrupoUsuario(int _idGrupo)
+        {
+            List<Permissao> permissoes = new List<Permissao>();
+            Permissao permissao = new Permissao();
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = cn;
+                cmd.CommandText = @"SELECT Id, Descricao FROM Permissao 
+                                    INNER JOIN PermissaoGrupoUsuario ON Permissao.Id = PermissaoGrupoUsuario.IdPermissao
+                                   WHERE PermissaoGrupoUsuario.IdGrupoUsuario = @IdGrupoUsuario";
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupo);
+                cn.Open();
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    while (rd.Read())
+                    {
+                        permissao = new Permissao();
+                        permissao.Id = Convert.ToInt32(rd["Id"]);
+                        permissao.Descricao = rd["Descricao"].ToString();
+                        permissoes.Add(permissao);
+
+                    }
+                }
+                return permissoes;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu um erro ao tentar buscar a permissao pelo id do grupo de usuários.", ex);
             }
             finally
             {

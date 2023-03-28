@@ -13,7 +13,7 @@ namespace BLL
             ValidarPermissao(2);
             ValidarDados(_usuario, _confirmacaoDeSenha);
 
-            UsuarioDAL usuarioDAL = new UsuarioDAL();  
+            UsuarioDAL usuarioDAL = new UsuarioDAL();
             usuarioDAL.Inserir(_usuario);
 
         }
@@ -40,8 +40,8 @@ namespace BLL
         {
             ValidarPermissao(1);
             return new UsuarioDAL().BuscarPorId(_id);
-        } 
-        public Usuario BuscarPorCPF ( string _cpf)
+        }
+        public Usuario BuscarPorCPF(string _cpf)
         {
             ValidarPermissao(1);
             return new UsuarioDAL().BuscarPorCPF(_cpf);
@@ -66,26 +66,28 @@ namespace BLL
                 throw new Exception("A senha deve ter mais de 3 caracteres");
             }
 
-            if(_usuario.Nome.Length <= 2)
+            if (_usuario.Nome.Length <= 2)
             {
                 throw new Exception("O nome deve ter mais de 2 caracteres");
             }
         }
-        private void ValidarPermissao(int _idPermissao)
+        public void ValidarPermissao(int _idPermissao)
         {
-            if(! new UsuarioDAL().ValidarPermissao(Constantes.IdUsuarioLogado, _idPermissao))
+            if (!new UsuarioDAL().ValidarPermissao(Constantes.IdUsuarioLogado, _idPermissao))
             {
                 throw new Exception("Você não tem permissão de realizar essa operação. Procure o administrador para o auxiliar");
             }
         }
         public void AdicionarGrupoUsuario(int _idUsuario, int _idGrupoUsuario)
         {
+            ValidarPermissao(10);
             if (!new UsuarioDAL().UsuarioPertenceAoGrupo(_idUsuario, _idGrupoUsuario))
                 new UsuarioDAL().AdicionarGrupoUsuario(_idUsuario, _idGrupoUsuario);
         }
 
         public void RemoverGrupoUsuario(int _idUsuario, int _idGrupoUsuario)
         {
+            ValidarPermissao(12);
             new UsuarioDAL().RemoverGrupoUsuario(_idUsuario, _idGrupoUsuario);
         }
 

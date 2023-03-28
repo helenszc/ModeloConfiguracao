@@ -98,11 +98,12 @@ namespace DAL
 
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {
-                    if (rd.Read())
+                    while (rd.Read())
                     {
                         grupoUsuario = new GrupoUsuario();
                         grupoUsuario.Id = Convert.ToInt32(rd["Id"]);
                         grupoUsuario.NomeGrupo = rd["NomeGrupo"].ToString();
+                        grupoUsuario.Permissoes = new PermissaoDAL().BuscarPorIdGrupoUsuario(grupoUsuario.Id);
                         gruposUsuarios.Add(grupoUsuario);
 
                     }
@@ -261,7 +262,7 @@ namespace DAL
                 SqlCommand cmd = cn.CreateCommand();
                 cmd.Connection = cn;
                 cmd.CommandText = @"SELECT 1 FROM PermissaoGrupoUsuario
-                                  WHERE IdGrupoUsuario= @IdGrupoUsuario AND IdPermisao = @IdPermissao";
+                                  WHERE IdGrupoUsuario= @IdGrupoUsuario AND IdPermissao = @IdPermissao";
                 cmd.CommandType = System.Data.CommandType.Text;
 
                 cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupoUsuario);

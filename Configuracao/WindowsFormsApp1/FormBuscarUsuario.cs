@@ -27,28 +27,35 @@ namespace WindowsFormsApp1
             }
             catch(Exception ex)
             {
-                throw new Exception(ex.Message);
+               MessageBox.Show(ex.Message);
             }
         }
 
         private void buttonExcluirUsuario_Click(object sender, EventArgs e)
         {
-            if(usuarioBindingSource.Count <= 0)
+            try
             {
-                MessageBox.Show("Não há registro selecionado para ser excluído");
-                return;
-            }
+                if (usuarioBindingSource.Count <= 0)
+                {
+                    MessageBox.Show("Não há registro selecionado para ser excluído");
+                    return;
+                }
 
-            if(MessageBox.Show("Deseja excluir esse registro?", "Atenção", MessageBoxButtons.YesNo) == DialogResult.No)
+                if (MessageBox.Show("Deseja excluir esse registro?", "Atenção", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    return;
+                }
+
+                int id = ((Usuario)usuarioBindingSource.Current).Id;
+                new UsuarioBLL().Excluir(id);
+                usuarioBindingSource.RemoveCurrent();
+
+                MessageBox.Show("Registro excluído com sucesso");
+            }
+            catch (Exception ex)
             {
-                return;
+                MessageBox.Show(ex.Message);
             }
-
-            int id = ((Usuario)usuarioBindingSource.Current).Id;
-            new UsuarioBLL().Excluir(id);
-            usuarioBindingSource.RemoveCurrent();
-
-            MessageBox.Show("Registro excluído com sucesso");
         }
 
         private void buttonAdicionarUsuario_Click(object sender, EventArgs e)

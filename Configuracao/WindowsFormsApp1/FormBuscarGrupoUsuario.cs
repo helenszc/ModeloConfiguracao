@@ -20,7 +20,7 @@ namespace WindowsFormsApp1
         }
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
-                grupoUsuarioBindingSource.DataSource = new GrupoUsuarioBLL().BuscarTodos();
+                grupoUsuarioBindingSource.DataSource = new GrupoUsuarioBLL().BuscarPorNomeGrupo(textBox1.Text);
         }
         private void buttonExcluirGrupoUsuario_Click(object sender, EventArgs e)
         {

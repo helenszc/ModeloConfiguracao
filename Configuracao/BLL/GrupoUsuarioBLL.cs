@@ -12,18 +12,18 @@ namespace BLL
     {
         public void Inserir(GrupoUsuario _grupoUsuario)
         {
-           new UsuarioBLL().ValidarPermissao(6);
-            GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
-            grupoUsuarioDAL.Inserir(_grupoUsuario);
+                new UsuarioBLL().ValidarPermissao(6);
+                GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
+                grupoUsuarioDAL.Inserir(_grupoUsuario);
 
-            if(_grupoUsuario.NomeGrupo.Length < 5)
-            {
-                throw new Exception("O nome do grupo deve conter pelo menos 5 caracteres");
-            }
-            if(_grupoUsuario.NomeGrupo.Length > 20)
-            {
-                throw new Exception("O nome do grupo não deve ser tão grande(no maximo 20 caracteres)");
-            }
+                if (_grupoUsuario.NomeGrupo.Length < 5)
+                {
+                    throw new Exception("O nome do grupo deve conter pelo menos 5 caracteres");
+                }
+                if (_grupoUsuario.NomeGrupo.Length > 20)
+                {
+                    throw new Exception("O nome do grupo não deve ser tão grande(no maximo 20 caracteres)");
+                }
 
         }
 

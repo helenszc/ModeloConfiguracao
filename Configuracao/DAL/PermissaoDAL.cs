@@ -15,26 +15,26 @@ namespace DAL
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
             try
             {
-                SqlCommand cmd = cn.CreateCommand();
-                cmd.CommandText = @"INSERT INTO Permissao(Descricao)
-                                    VALUES(@Descricao)";
+                    SqlCommand cmd = cn.CreateCommand();
+                    cmd.CommandText = @"INSERT INTO Permissao(Descricao)
+                                        VALUES(@Descricao)";
 
-                cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@Descricao", _permissao.Descricao);
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.Parameters.AddWithValue("@Descricao", _permissao.Descricao);
 
 
-                cmd.Connection = cn;
-                cn.Open();
-                cmd.ExecuteNonQuery();
+                    cmd.Connection = cn;
+                    cn.Open();
+                    cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
 
-                throw new Exception("Ocorreu um erro ao tentar inserir uma permissao no banco de dados", ex);
+                    throw new Exception("Ocorreu um erro ao tentar inserir uma permissao no banco de dados", ex);
             }
             finally
             {
-                cn.Close();
+                    cn.Close();
             }
         }
 
